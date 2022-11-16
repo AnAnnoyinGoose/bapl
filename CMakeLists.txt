@@ -1,7 +1,6 @@
 cmake_minimum_required(VERSION 3.23)
-project(Bad__ C)
+project(BAPL C)
 
-set(CMAKE_C_STANDARD 11)
+set(CMAKE_C_STANDARD 99)
 
-add_executable(Bad__
-        src/bad-compile.c)
+add_executable(BAPL main.c)

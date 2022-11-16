@@ -1,0 +1,3 @@
+/home/aag/CLionProjects/BAPL/cmake-build-debug/CMakeFiles/BAPL.dir
+/home/aag/CLionProjects/BAPL/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/aag/CLionProjects/BAPL/cmake-build-debug/CMakeFiles/rebuild_cache.dir
