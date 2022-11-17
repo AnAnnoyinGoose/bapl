@@ -94,17 +94,14 @@ void printHelp() {
 
 
 // compiler
-
 int compiler (char *input_file, char *output_file, bool compile_only, bool execute, bool compile_to_assembly, bool print_file) {
 //    rewrite the bapl code to C
-printf("Compiling to C...\n");
-
+    printf("Compiling to C...\n");
     FILE *input = fopen(input_file, "r");
     FILE *output = fopen(output_file, "w");
     char *line = NULL;
     size_t len = 0;
     ssize_t read;
-
     if (input == NULL) {
         printf("Error: I File not found\n");
         return 1;
@@ -115,94 +112,45 @@ printf("Compiling to C...\n");
     }
     fprintf(output,"#include <stdio.h>\n#include <string.h>\n#include <stdbool.h>\n#include <stdlib.h>\nint main(int argc, char** argv) {\n");
     while ((read = getline(&line, &len, input)) != -1) {
-
         printf("Retrieved line of length %zu: %s \n", read, line);
         // csn << "Hello World";
         if (strstr(line, "csn <<") != NULL) {
-            char *str = strstr(line, "csn <<");
-            str = str + 6;
-            // remove all the spaces around the string
-            while (str[0] == ' ') {
-                str = str + 1;
+            char *line2 = strstr(line, "csn <<");
+            line2 = line2 + 6;
+            // with a forloop read the line and replace << with nothing and replace " with nothing and remove all abundant spaces
+            for (int i = 0; i < strlen(line2); i++) {
+                if (line2[i] == '<' && line2[i+1] == '<') {
+                    line2[i] = ' ';
+                    line2[i+1] = ' ';
+                }
+                if (line2[i] == '"') {
+                    line2[i] = ' ';
+                }
+                if (line2[i] == ' ' && line2[i+1] == ' ') {
+                    line2[i] = ' ';
+                }
+                if (line2[i] == ';') {
+                    line2[i] = ' ';
+                }
             }
-            while (str[strlen(str) - 1] == ' ') {
-                str[strlen(str) - 1] = '\0';
-            }
-
-            fprintf(output, "printf(%s);\n", str);
+            fprintf(output, "printf(\"%s\");\n", line2);
         }
-        // var::int x = 5;
-        if (strstr(line, "var::") != NULL) {
-            char *str = strstr(line, "var::");
-            str = str + 5;
-            // remove all the spaces around the string
-            while (str[0] == ' ') {
-                str = str + 1;
-            }
-            while (str[strlen(str) - 1] == ' ') {
-                str[strlen(str) - 1] = '\0';
-            }
-            // get the type
-            char *type = strtok(str, " ");
-            // get the name
-            char *name = strtok(NULL, " ");
-            // get the value
-            char *value = strtok(NULL, " ");
-            // remove all the spaces around the string
-            while (value[0] == ' ') {
-                value = value + 1;
-            }
-            while (value[strlen(value) - 1] == ' ') {
-                value[strlen(value) - 1] = '\0';
-            }
-            // remove the semicolon
-            value[strlen(value) - 1] = '\0';
-            fprintf(output, "%s %s = %s;\n", type, name, value);
-        }
-        // if::param(x>y)::output(csn << "x is greater than y");
-        if (strstr(line, "if::") != NULL) {
-            char *str = strstr(line, "if::");
-            str = str + 4;
-            // remove all the spaces around the string
-            while (str[0] == ' ') {
-                str = str + 1;
-            }
-            while (str[strlen(str) - 1] == ' ') {
-                str[strlen(str) - 1] = '\0';
-            }
-            // get the param
-            char *param = strtok(str, "::");
-            // get the output
-            char *output = strtok(NULL, "::");
-            // remove all the spaces around the string
-            while (param[0] == ' ') {
-                param = param + 1;
-            }
-            while (param[strlen(param) - 1] == ' ') {
-                param[strlen(param) - 1] = '\0';
-            }
-            while (output[0] == ' ') {
-                output = output + 1;
-            }
-            while (output[strlen(output) - 1] == ' ') {
-                output[strlen(output) - 1] = '\0';
-            }
-            // remove the semicolon
-            output[strlen(output) - 1] = '\0';
-            fprintf(output, "if(%s){\n%s\n}\n", param, output);
-
-
     }
-    fprintf(output, "return 0;\n}");
+    fprintf(output,"return 0;\n}");
     fclose(input);
     fclose(output);
-    if (line) {
-        free(line);
+    if (print_file) {
+        printf("Printing the file...\n");
+        FILE *output = fopen(output_file, "r");
+        char *line = NULL;
+        size_t len = 0;
+        ssize_t read;
+        while ((read = getline(&line, &len, output)) != -1) {
+            printf("Retrieved line of length %zu: %s \n", read, line);
+        }
+        fclose(output);
     }
-    printf("Done!\n");
-    return 0;
 }
-
 
 
 int main(int argc, char *argv[]) {

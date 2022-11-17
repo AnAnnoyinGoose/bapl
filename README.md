@@ -13,45 +13,24 @@ more in [syntax](#syntax)
 ## Syntax 
 
 ### Variables
-Variables are declared with the `var` keyword, their type is assinged with a `::` and their value is assigned with a `=`. 
-```bapl
-var::int x = 5
-var::string y = "Hello World"
-var::bool z = true
-var::float  a= 5.5
-var::char b = 'a'
+Variables are defined with `var`
+Their type is then issued with `::`
 ```
-### Referencing variables
-Variables can be referenced by using the `$` symbol, and then the variable name.
-```bapl
-var::int x = 5
-var::int y = $x
+var::int x = 4;
+var::char y = 'a';
+var::char* name = "John";
+var::bool z = false;
+...
 ```
-### Functions
-Functions are declared with the `func` keyword, their name is assigned with a `::` and their parameters are assigned with a `(` and `)`. 
-```bapl
-func main::void() {
-    cnsl << "Hello World";
-}
+### Print Statements
+Text/variables are printed to the console with `csn <<`
 ```
-### If statements
-If statements are declared with the `if` keyword, their condition is assigned with a `(` and `)`, and their body is assigned with a `{` and `}`. 
-```bapl
-if (true) {
-    cnsl << "Hello World";
-}
+csn << "hello world";
 ```
-### loops
-Loops are declared with the `loop` keyword, the type of loop is assigned with a `::` and their body is assigned with a `{` and `}`. 
-```bapl
-loop::while(true) {
-    cnsl << "Hello World";
-}
-``` 
-### Re declarations
-Re declarations are declared with the `!` keyword, their value is assigned with a `=`. 
-```bapl
-!x = 5
+### Input
+Text is inputed from the console via `csn >>`
 ```
-
-
+var::int x = none; #undeclared variable
+csn >> x;
+csn << "X is: " << x;
+```

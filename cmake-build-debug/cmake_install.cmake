@@ -1,4 +1,4 @@
-# Install script for directory: /home/aag/CLionProjects/BAPL
+# Install script for directory: /home/aag/code/projects/Bad!!
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -50,5 +50,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/aag/CLionProjects/BAPL/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/aag/code/projects/Bad!!/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

@@ -49,8 +49,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "/home/aag/CLionProjects/BAPL/cmake-build-debug",
-		"source" : "/home/aag/CLionProjects/BAPL"
+		"build" : "/home/aag/code/projects/Bad!!/cmake-build-debug",
+		"source" : "/home/aag/code/projects/Bad!!"
 	},
 	"version" : 
 	{
