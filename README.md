@@ -15,22 +15,26 @@ more in [syntax](#syntax)
 ### Variables
 Variables are defined with `var`
 Their type is then issued with `::`
+Their name with `:`
+And value in <>
 ```
-var::int x = 4;
-var::char y = 'a';
-var::char* name = "John";
-var::bool z = false;
+var::int:x<4>;
+var::char:y<'a'>;
+var::char*:name<"John">;
+var::bool:z<false>;
 ...
 ```
 ### Print Statements
-Text/variables are printed to the console with `csn <<`
+Text/variables are printed to the console with `csn<>`
 ```
-csn << "hello world";
+csn<:<"Hello World">;
+...
+var::char*:x<"World!">;
+csn<:<"Hello &<x>">;
 ```
 ### Input
 Text is inputed from the console via `csn >>`
 ```
 var::int x = none; #undeclared variable
-csn >> x;
-csn << "X is: " << x;
+csn>:&<x>
 ```

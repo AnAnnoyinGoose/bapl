@@ -1,6 +1,8 @@
-csn << "Hello From Bapl\n"
-csn << "This is cool\n"
-csn << "I am a Bapl programmer\n"
-csn << "I am a Bapl programmer\n"
-csn << "I am a Bapl programmer\n"
+var:::int  ::petr        :<9>;
+var:::char*::jirka:<"Je Gud\n">;
+csn<:<Jirka>;
+csn<:<&<jirka>>;
+var:::int::x:<0>;
+csn>:&<x>;
+csn<:<&<x>>;
 
